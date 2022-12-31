@@ -20,15 +20,26 @@ var x = setInterval(function() {
         minutesString = "0" + minutes.toString();
     if(seconds < 10)
         secondsString = "0" + seconds.toString();
+    
+    if(hours == 0 && distance != 0) {
+        document.getElementById("time-thingy").setAttribute("style", "left: 28%;");
+        document.getElementById("time-thingy").innerHTML = "Il reste " + minutesString + ":" + secondsString + " avant 2023!";
+    }
 
-
-    document.getElementById("time-thingy").innerHTML = "There's currently " + hoursString + ":"
-    + minutesString + ":" + secondsString + " until 2023!";
+    if(minutes == 0 && seconds > 0) {
+        document.getElementById("time-thingy").setAttribute("style", "left: 20%;");
+        document.getElementById("time-thingy").innerHTML = "Il reste " + secondsString + " secondes avant 2023!";
+    }
+    
+    if(distance != 0) {
+        document.getElementById("time-thingy").setAttribute("style", "left: 24%;");
+        document.getElementById("time-thingy").innerHTML = "Il reste " + hoursString + ":" + minutesString + ":" + secondsString + " avant 2023!";
+    }
 
     if (distance < 0) {
         clearInterval(x);
-        document.getElementById("time-thingy").innerHTML = "HAPPY NEW YEAR :)";
+        document.getElementById("time-thingy").innerHTML = "Joyeuse année :)";
         document.getElementById("balloons").setAttribute("style", "visibility: visible;");
-        document.getElementById("time-thingy").setAttribute("style", "left: 30%;");
+        document.getElementById("time-thingy").setAttribute("style", "left: 35%;");
     }
 }, 1000);
